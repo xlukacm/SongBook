@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import axios from"axios"
 import {Link} from "react-router-dom";
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 
@@ -8,6 +8,7 @@ class Song extends Component {
         super(props)
         this.state={
             posts:[],
+            id:""
         }
     }
 
@@ -15,11 +16,10 @@ class Song extends Component {
         const { match: { params } } = this.props;
 
         axios.post(`/api/public/get/song/${params.id}`)
-            .then(({ data: user }) => {
-                console.log('user', user);
-
-                this.setState({ user });
-            });
+            .then(res => {
+                console.log(res);
+                console.log(res.data);
+            })
     }
     // async componentDidMount() {
     //     const url = "http://spevnik.smefata.sk/api/public/get/song";

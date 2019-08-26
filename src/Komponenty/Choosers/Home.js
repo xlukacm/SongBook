@@ -90,10 +90,10 @@ class Home extends Component {
                 Header: <b>Akcia</b>,
                 accessor: "id",
                 Cell: props => {
-                    console.log(props);
+                    console.log(props.original.id);
                     return (
-                        <Link to="Song" params= { {id: 1}}
-                              nt={Song}
+                        <Link to="Song"
+                              params= { {id: props.original.id}}
                               type="button"
                               className="btn btn-primary"
                         ><i className="far fa-eye"></i></Link>
