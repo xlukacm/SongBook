@@ -1,5 +1,5 @@
 import React from "react";
-import ChooserName from "./Choosers/ChooserName";
+import Home from "./Choosers/Home";
 import ChooserTag from "./Choosers/ChooserTag";
 import ChooserInterpret from "./Choosers/ChooserInterpret"
 

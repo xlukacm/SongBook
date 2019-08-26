@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import ReactTable from "react-table";
 import "react-table/react-table.css"
+import {Link} from "react-router-dom";
+import {BrowserRouter as Router, Switch,Route} from "react-router-dom";
 import SearchTable from 'reactable-search';
 import Columns from "./Columns";
+import Song from "./Song";
 
 
 
-class ChooserName extends Component {
+class Home extends Component {
     constructor(props){
         super(props)
         this.state = {
@@ -20,12 +23,15 @@ class ChooserName extends Component {
 
     handleChange(event) {
         this.setState({value: event.target.value});
-        // event.preventDefault();
+        event.preventDefault();
         // const song = this.state.value;
         // this.props.onSearchTermChange(song);
         // this.setState({
-        //     city: ''
+        //     value: ''
         // });
+
+        //toto je na mazanie zo searchu, treba doladit
+        //https://stackoverflow.com/questions/46539480/react-clearing-an-input-value-after-form-submit/46539556
     }
 
     handleSubmit(event) {
@@ -53,6 +59,11 @@ class ChooserName extends Component {
     // };
 
     render(){
+        const styles ={
+            color: 'white',
+            textAlign: 'center'
+        };
+
         // const { search } = this.state;
         // const filtered = this.props.filter(posts => {
         //     return posts.name.toLowerCase().indexOf(search.toLowerCase()) !== -1;
@@ -77,13 +88,15 @@ class ChooserName extends Component {
             },
             {
                 Header: <b>Akcia</b>,
+                accessor: "id",
                 Cell: props => {
+                    console.log(props);
                     return (
-                        <button type="button" className="btn btn-primary"
-                                onClick={() => {
-                                    console.log("props", props)
-                                }}
-                        ><i className="far fa-eye"></i></button>
+                        <Link to="Song" params= { {id: 1}}
+                              nt={Song}
+                              type="button"
+                              className="btn btn-primary"
+                        ><i className="far fa-eye"></i></Link>
                     )
                 },
                 sortable: false,
@@ -102,15 +115,19 @@ class ChooserName extends Component {
                     <div className="navbar navbar-dark bg-primary" id="navbarSupportedContent">
                         <ul className="navbar-nav mr-auto">
                             <li className="nav-item active">
-                                <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
+                                <Link style={styles} to="/home" className="HomeLink">Home</Link>
+                                <a href="#/home" className="HomeLink"></a>
                             </li>
+
                             <li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Dropdown
                                 </a>
                                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a className="dropdown-item" href="#">Action</a>
+                                    <Link  to="/song" className="SongLink">Song</Link>
+                                    <a href="#/song" class="song"></a>
+
                                     <div className="dropdown-divider"></div>
                                     <a className="dropdown-item" href="#">Something else here</a>
                                 </div>
@@ -147,12 +164,10 @@ class ChooserName extends Component {
                     className="-striped -highlight"
                 ></ReactTable>
             </div>
-
-
         )
     }
 }
-export default ChooserName
+export default Home
 
 // <ul>
 // {this.props.   .map((contact)=> {
