@@ -5,7 +5,7 @@ import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 
 class Song extends Component {
     constructor(props){
-        super(props)
+        super(props);
         this.state={
             posts:[],
             id:""
